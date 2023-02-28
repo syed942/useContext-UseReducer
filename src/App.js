@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
 
+
+import { useContext ,useState} from 'react';
+import './App.css';
+import { AddItem } from './components/AddItem';
+import { Counter } from './components/Counter';
+import { ShoppingList } from './components/ShoppingList';
+import { GlobalContext,GlobalProvider } from './GlobalStates';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ const {adminUser,adminPassword}=  useContext(GlobalContext)
+ //const [user,setUser]=useState(admin)
+ 
+
+
+return (
+   <div className="container"> 
+ 
+   <h2>user name is:{adminUser},{adminPassword} </h2>
+        {/* <Header />  */}
+        <GlobalProvider> 
+        <Counter/>
+          <AddItem />
+          
+        
+           {/* Components that will have access to the global state go here*/} 
+           <ShoppingList />
+           
+        </GlobalProvider> 
+       
+        
+       
+  </div>
+
+ );
 }
 
 export default App;
